@@ -19,8 +19,6 @@ import "ace-builds/src-noconflict/ext-language_tools";
 import {
   Box,
   Button,
-  Container,
-  Stack,
   MenuItem,
   LinearProgress,
   ThemeProvider,
@@ -34,17 +32,9 @@ import {
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 
 import { useState, useEffect } from "react";
-import { red } from "@mui/material/colors";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import LibraryAddCheckRoundedIcon from "@mui/icons-material/LibraryAddCheckRounded";
-import Tooltip from "@mui/material/Tooltip";
-import DownloadRoundedIcon from "@mui/icons-material/DownloadRounded";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 import { saveAs } from "file-saver";
-function onChange(newValue) {
-  console.log("change", newValue);
-}
 
 const darkTheme = createTheme({
   palette: {
@@ -72,7 +62,6 @@ function Editor() {
   const [input, setInput] = useState("");
   const [executing, setExecuting] = useState(false);
   const [editorlang, setEditorLang] = useState("c_cpp");
-  const [copy, setCopy] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -98,12 +87,7 @@ function Editor() {
   }, [lang]);
 
   const handleCopyCode = () => {
-    setCopy(true);
-
     navigator.clipboard.writeText(code);
-    setTimeout(() => {
-      setCopy(false);
-    }, 1500);
   };
   const handleDownloadCode = () => {
     const languageArrayExtension = {
@@ -149,7 +133,6 @@ function Editor() {
             display: "grid",
             gridTemplateColumns: "repeat(12, 1fr)",
             gridGap: "0 20px",
-            // gridTemplateRows: "calc(100% - 200px) 200px",
             "& .ace_gutter": {
               backgroundColor: "#19202b",
             },
@@ -166,9 +149,7 @@ function Editor() {
             placeholder=""
             mode={editorlang}
             theme="dracula"
-            name="blah2"
-            // onLoad={this.onLoad}
-            // onChange={this.onChange}
+            name="CodeBox"
             onChange={(e) => {
               console.log(e);
               setCode(e);
@@ -188,7 +169,6 @@ function Editor() {
             }}
             showGutter={true}
             highlightActiveLine={true}
-            // value={`#inlcude<iostream> using namespace std; int main(){ cout<<"Hello World"; return 0; }`}
             setOptions={{
               enableBasicAutocompletion: true,
               enableLiveAutocompletion: true,
@@ -199,10 +179,7 @@ function Editor() {
           />
           <div
             style={{
-              // direction: "row",
-              // display: "flex",
               gridColumn: "span 3",
-              // gridTemplateColumns: "repeat(1, 1fr)",
               display: "grid",
               gridTemplateRows: "auto 1fr auto",
               padding: "0px 0px",
@@ -275,39 +252,6 @@ function Editor() {
                 <MenuItem onClick={handleCopyCode}>Copy</MenuItem>
                 <MenuItem onClick={handleDownloadCode}>Download</MenuItem>
               </Menu>
-              {/* {copy ? (
-                <Tooltip title="Copied" placement="bottom">
-                  <LibraryAddCheckRoundedIcon
-                    style={{
-                      cursor: "pointer",
-                      color: "#fff",
-                      marginTop: "6px",
-                      marginBottom: "9px",
-                    }}
-                  />
-                </Tooltip>
-              ) : (
-                <Tooltip title="Copy" placement="bottom">
-                  <ContentCopyIcon
-                    onClick={handleCopyCode}
-                    style={{
-                      cursor: "pointer",
-                      alignContent: "center",
-                      color: "#fff",
-                    }}
-                  />
-                </Tooltip>
-              )}
-              <Tooltip title="Download" placement="bottom">
-                <DownloadRoundedIcon
-                  onClick={handleDownloadCode}
-                  sx={{
-                    cursor: "pointer",
-                    color: "#fff",
-                    marginLeft: 1,
-                  }}
-                />
-              </Tooltip> */}
               {executing && (
                 <LinearProgress
                   size={14}
@@ -348,39 +292,7 @@ function Editor() {
                 }}
               />
             </div>
-            {/* <div>
-              <InputLabel
-                style={{
-                  color: "#2196F3",
-                  margin: "7px 0",
-                  textAlign: "left !important",
-                }}
-              >
-                Output
-              </InputLabel> */}
-            {/* <TextField
-                multiline
-                value="sdsdfsdf"
-                variant="outlined"
-                inputProps={{
-                  style: {
-                    fontSize: 20,
-                    height: "17rem",
-                    width: "18rem",
-                    color: "#FFFFFF",
-                  },
-                }}
-                sx={{
-                  backgroundColor: "#282A36",
-                  color: "#f8f8f2",
-                }}
-              />
-            </div> */}
-            <div
-            // style={{
-            //   paddingTop: "10px",
-            // }}
-            >
+            <div>
               <InputLabel
                 style={{
                   color: "#2196F3",
@@ -410,103 +322,6 @@ function Editor() {
                 {output?.data?.output || output?.data?.error}
               </div>
             </div>
-            {/* <TextField
-            // rows={6}
-            // multiline
-            // style={{
-            //   textAlign: "left",
-            //   color: "white",
-            //   overflow: "auto",
-            //   whiteSpace: "pre-line",
-            //   fontFamily: "monospace",
-            //   fontSize: "17px",
-            // }}
-            id="outlined-multiline-static"
-            label="Multiline"
-            multiline
-            rows={6}
-            defaultValue="Default Value"
-          /> */}
-            {/* <div
-            style={{
-              color: "#2196F3",
-              margin: "7px 0",
-              textAlign: "left !important",
-            }}
-          >
-            output
-          </div> */}
-            {/* <Box
-            style={{
-              textAlign: "left",
-              color: "white",
-              overflow: "auto",
-              whiteSpace: "pre-line",
-              fontFamily: "monospace",
-              fontSize: "17px",
-            }}
-          >
-            sdfsfsd
-          </Box> */}
-            {/* <Box
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(2, 1fr)",
-              }}
-            >
-              <Button variant="contained" sx={{ gridColumn: "span 1" }}>
-                Run
-              </Button>
-              <Button style={{ gridColumn: "span 1" }} variant="contained">
-                Submit
-              </Button>
-            </Box> */}
-            {/* <div style={{ textAlign: "left !important" }}>
-              <Button
-                size="small"
-                variant="contained"
-                color="primary"
-                onClick={createRequest}
-                style={{ marginRight: 10 }}
-                startIcon={<PlayArrowRoundedIcon />}
-                disabled={false}
-              >
-                Run
-              </Button>
-              <Select
-                value={lang}
-                onChange={(e) => {
-                  setLang(e.target.value);
-                }}
-                inputProps={{
-                  name: "language",
-                  id: "outlined-age-native-simple",
-                }}
-                disabled={executing}
-                sx={{
-                  color: "#2196F3",
-                  height: "32px",
-                  margin: "7px 0",
-                  textAlign: "left !important",
-                  "& *": {
-                    fontFamily: "poppins",
-                  },
-                }}
-              >
-                <MenuItem value={"python3"}>Python3</MenuItem>
-                <MenuItem value={"c"}>C</MenuItem>
-                <MenuItem value={"cpp"}>C++</MenuItem>
-                <MenuItem value={"java"}>Java</MenuItem>
-                <MenuItem value={"go"}>Golang</MenuItem>
-                <MenuItem value={"javascript"}>JS</MenuItem>
-              </Select>
-              {executing && (
-                <LinearProgress
-                  size={14}
-                  style={{ color: "white", margin: "auto" }}
-                />
-              )}
-            </div> */}
           </div>
         </Box>
       </ThemeProvider>
