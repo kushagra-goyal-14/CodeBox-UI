@@ -22,7 +22,6 @@ import {
   MenuItem,
   LinearProgress,
   ThemeProvider,
-  createTheme,
   TextField,
   InputLabel,
   Select,
@@ -33,36 +32,45 @@ import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 
 import { useState, useEffect } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import darkTheme from "../../utils/cutomTheme";
 
 import { saveAs } from "file-saver";
 
-const darkTheme = createTheme({
-  palette: {
-    mode: "dark",
-    primary: {
-      main: "#2196F3",
-    },
-  },
-  MuiTextField: {
-    styleOverrides: {
-      root: {
-        borderRadius: "10px",
-        label: {
-          color: "#FFFFFF",
-        },
-      },
-    },
-  },
-});
-
 function Editor() {
   const [output, setOutput] = useState("");
-  const [code, setCode] = useState("");
+
   const [lang, setLang] = useState("cpp");
   const [input, setInput] = useState("");
   const [executing, setExecuting] = useState(false);
   const [editorlang, setEditorLang] = useState("c_cpp");
   const [anchorEl, setAnchorEl] = useState(null);
+
+  const defaultCodeArray = {
+    cpp: `#include <iostream>
+using namespace std;
+int main() {
+    cout << "Hello World!";
+    return 0;
+}`,
+    c: `#include <stdio.h>
+int main() {
+    printf("Hello World!");
+    return 0;
+}`,
+    java: `class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+    }
+}`,
+    python3: `print("Hello World!")`,
+    go: `package main
+import "fmt"
+func main() {
+    fmt.Println("Hello World!")
+}`,
+    javascript: `console.log("Hello World!")`,
+  };
+  const [code, setCode] = useState("");
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -73,16 +81,22 @@ function Editor() {
   useEffect(() => {
     if (lang === "cpp") {
       setEditorLang("c_cpp");
+      setCode(defaultCodeArray.cpp);
     } else if (lang === "c") {
       setEditorLang("c_cpp");
+      setCode(defaultCodeArray.c);
     } else if (lang === "java") {
       setEditorLang("java");
+      setCode(defaultCodeArray.java);
     } else if (lang === "python3") {
       setEditorLang("python");
+      setCode(defaultCodeArray.python3);
     } else if (lang === "go") {
       setEditorLang("golang");
+      setCode(defaultCodeArray.go);
     } else if (lang === "javascript") {
       setEditorLang("javascript");
+      setCode(defaultCodeArray.javascript);
     }
   }, [lang]);
 
