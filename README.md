@@ -1,13 +1,13 @@
-## Deployed API - "https://github.com/kushagra-goyal-14/CodeBox-API"
+Deployed API - "https://github.com/kushagra-goyal-14/CodeBox-API"
 
-## Scaled API - "https://github.com/kushagra-goyal-14/CodeBox"
+Scaled API - "https://github.com/kushagra-goyal-14/CodeBox"
 
 The compiler might take a while at first as it is hosted on render's free serverless architecture.
 
 ### ScreenShots
 
-![Alt text](./screenshots/img.png)
+![Codebox](./screenshots/img2.png)
 
 <br>
 
-![Alt text](./screenshots/img2.png)
+![Codebox]](./screenshots/img.png)
