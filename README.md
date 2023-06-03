@@ -10,4 +10,4 @@ The compiler might take a while at first as it is hosted on render's free server
 
 <br>
 
-![Codebox]](./screenshots/img.png)
+![Codebox](./screenshots/img.png)
