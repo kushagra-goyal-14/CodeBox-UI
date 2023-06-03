@@ -51,7 +51,7 @@ function Home() {
           variant="contained"
           sx={{
             backgroundColor: "primary.main",
-            color: "light.main",
+            color: "background.secondary",
             fontSize: "1.5rem",
             fontWeight: 700,
             width: "200px",
