@@ -1,6 +1,8 @@
 import IMG from "../../assets/img.png";
 import { Box, Typography, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 function Home() {
+  const navigate = useNavigate();
   return (
     <Box
       sx={{ height: "92vh", backgroundColor: "background.default" }}
