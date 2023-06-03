@@ -166,7 +166,7 @@ func main() {
             borderRight: "2px solid",
             borderColor: "primary.main",
           },
-          height: "93%",
+          // height: "93%",
         }}
       >
         <AceEditor

@@ -4,7 +4,7 @@ import Editor from "./components/Editor/Editor";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import { CustomContext } from "./utils/customContext";
-import { ThemeProvider } from "@mui/material";
+import { Box, ThemeProvider } from "@mui/material";
 import {
   orangeTheme,
   blueTheme,
@@ -19,11 +19,18 @@ function App() {
     <ThemeProvider theme={theme}>
       <CustomContext.Provider value={{ theme, setTheme }}>
         <Router>
-          <Navbar />
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route exact path="/editor" element={<Editor />} />
-          </Routes>
+          <Box
+            sx={{
+              backgroundColor: "background.default",
+              height: "100%",
+            }}
+          >
+            <Navbar />
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route exact path="/editor" element={<Editor />} />
+            </Routes>
+          </Box>
         </Router>
       </CustomContext.Provider>
     </ThemeProvider>
