@@ -1,24 +1,34 @@
 import React from "react";
 import { AppBar, Button, Box, Container, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { CustomContext } from "../../utils/customContext";
+import { useContext } from "react";
+import CircleIcon from "@mui/icons-material/Circle";
+import {
+  blueTheme,
+  orangeTheme,
+  yellowTheme,
+  greenTheme,
+} from "../../utils/cutomTheme";
 
 function Navbar() {
   const navigate = useNavigate();
+  const { theme, setTheme } = useContext(CustomContext);
   return (
     <AppBar
       position="static"
       sx={{
-        backgroundColor: "#19202b",
         color: "#2196F3",
         boxShadow: "none",
         "& *": {
-          fontFamily: "monospace",
+          fontFamily: "poppins",
         },
       }}
     >
       <Container
         sx={{
           display: "flex",
+          backgroundColor: "background.default",
           justifyContent: "space-between",
           alignItems: "center",
         }}
@@ -35,7 +45,7 @@ function Navbar() {
             fontSize: "1.5rem",
             fontFamily: "poppins",
             fontWeight: 700,
-            color: "#2196F3",
+            color: "light.main",
             letterSpacing: ".3rem",
             textDecoration: "none",
           }}
@@ -50,6 +60,7 @@ function Navbar() {
               mx: 2,
               my: 2,
               display: "block",
+              color: "light.main",
               fontWeight: "bold",
               fontSize: "1rem",
               letterSpacing: ".1rem",
@@ -62,11 +73,14 @@ function Navbar() {
             Home
           </Button>
           <Button
-            onClick={() => navigate("/editor")}
+            onClick={() => {
+              navigate("/editor");
+            }}
             sx={{
               mx: 2,
               my: 2,
               display: "block",
+              color: "light.main",
               fontWeight: "bold",
               fontSize: "1rem",
               letterSpacing: ".1rem",
@@ -78,6 +92,53 @@ function Navbar() {
           >
             Editor
           </Button>
+        </Box>
+        <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <CircleIcon
+            onClick={() => setTheme(orangeTheme)}
+            sx={{
+              color: "#FF7722",
+              border: "1px solid #FFFFFF",
+              borderRadius: "50%",
+              marginLeft: "3.5px",
+              marginRight: "3.5px",
+              cursor: "pointer",
+            }}
+          />
+          <CircleIcon
+            onClick={() => setTheme(greenTheme)}
+            sx={{
+              color: "rgb(144, 214, 208)",
+              border: "1px solid #FFFFFF",
+              borderRadius: "50%",
+              marginLeft: "3.5px",
+              marginRight: "3.5px",
+              cursor: "pointer",
+            }}
+          />
+          <CircleIcon
+            onClick={() => setTheme(blueTheme)}
+            sx={{
+              color: "#2196F3",
+              border: "1px solid #FFFFFF",
+              borderRadius: "50%",
+              marginLeft: "3.5px",
+              marginRight: "3.5px",
+              cursor: "pointer",
+            }}
+          />
+          <CircleIcon
+            onClick={() => setTheme(yellowTheme)}
+            sx={{
+              color: "#FFBA09",
+              border: "1px solid #FFFFFF",
+
+              borderRadius: "50%",
+              marginLeft: "3.5px",
+              marginRight: "3.5px",
+              cursor: "pointer",
+            }}
+          />
         </Box>
       </Container>
     </AppBar>
