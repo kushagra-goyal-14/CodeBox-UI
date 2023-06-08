@@ -4,7 +4,7 @@ import Editor from "./components/Editor/Editor";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import { CustomContext } from "./utils/customContext";
-import { Box, ThemeProvider } from "@mui/material";
+import { Box, Container, ThemeProvider } from "@mui/material";
 import {
   orangeTheme,
   blueTheme,

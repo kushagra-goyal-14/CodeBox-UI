@@ -149,6 +149,7 @@ func main() {
         backgroundColor="background.default"
         sx={{
           display: "grid",
+          height: "92vh",
           gridTemplateColumns: "repeat(12, 1fr)",
           gridGap: "0 20px",
           "& .ace_gutter": {
@@ -166,7 +167,6 @@ func main() {
             borderRight: "2px solid",
             borderColor: "primary.main",
           },
-          // height: "93%",
         }}
       >
         <AceEditor
@@ -203,12 +203,12 @@ func main() {
         <div
           style={{
             gridColumn: "span 3",
-            display: "grid",
+            // display: "grid",
             gridTemplateRows: "auto 1fr auto",
             padding: "0px 0px",
           }}
         >
-          <div style={{ textAlign: "right !important" }}>
+          <div style={{ textAlign: "right", width: "inherit" }}>
             <Select
               value={lang}
               onChange={(e) => {
@@ -338,7 +338,11 @@ func main() {
               />
             )}
           </div>
-          <div>
+          <div
+            style={{
+              width: "99%",
+            }}
+          >
             <InputLabel
               sx={{
                 color: "primary.main",
@@ -361,18 +365,23 @@ func main() {
                   height: "10rem",
                   overflow: "auto",
                   color: "#fff",
+
                   borderColor: "#fff",
                 },
               }}
               variant="outlined"
               sx={{
                 backgroundColor: "text.primary",
-                width: "21rem",
+                width: "inherit",
                 color: "#f8f8f2",
               }}
             />
           </div>
-          <div>
+          <div
+            style={{
+              width: "99%",
+            }}
+          >
             <InputLabel
               sx={{
                 color: "primary.main",
@@ -392,7 +401,7 @@ func main() {
                 fontFamily: "monospace",
                 overflow: "auto",
                 height: "25rem",
-                width: "21rem",
+                width: "inherit",
                 fontSize: "17px",
                 backgroundColor: "text.primary",
                 // #001e3c

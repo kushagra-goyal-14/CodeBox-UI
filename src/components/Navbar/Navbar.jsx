@@ -32,7 +32,7 @@ function Navbar() {
           justifyContent: "space-between",
           alignItems: "center",
         }}
-        maxWidth="xl"
+        maxWidth="xllg"
       >
         <Typography
           variant="h6"

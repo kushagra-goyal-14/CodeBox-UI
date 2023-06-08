@@ -1,5 +1,5 @@
 import IMG from "../../assets/img.png";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 function Home() {
   const navigate = useNavigate();
@@ -86,7 +86,7 @@ function Home() {
           style={{
             height: "70%",
             width: "100%",
-            maxWidth: 700,
+            maxWidth: "auto",
             borderRadius: "10px",
             border: "1px solid #FFFFFF",
           }}
