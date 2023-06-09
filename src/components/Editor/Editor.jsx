@@ -208,7 +208,7 @@ func main() {
             padding: "0px 0px",
           }}
         >
-          <div style={{ textAlign: "right", width: "inherit", height: "5%" }}>
+          <div style={{ textAlign: "right", width: "inherit" }}>
             <Select
               value={lang}
               onChange={(e) => {
@@ -341,7 +341,7 @@ func main() {
           <div
             style={{
               width: "99%",
-              height: "30%",
+              // height: "30%",
             }}
           >
             <InputLabel
@@ -381,7 +381,7 @@ func main() {
           <div
             style={{
               width: "99%",
-              height: "63%",
+              height: "60%",
             }}
           >
             <InputLabel
