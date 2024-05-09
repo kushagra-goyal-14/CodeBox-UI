@@ -26,6 +26,7 @@ import {
   Select,
   IconButton,
   Menu,
+  Modal,
 } from "@mui/material";
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 
@@ -42,6 +43,11 @@ function Editor() {
   const [executing, setExecuting] = useState(false);
   const [editorlang, setEditorLang] = useState("c_cpp");
   const [anchorEl, setAnchorEl] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
   const defaultCodeArray = {
     cpp: `#include <iostream>
@@ -120,6 +126,10 @@ func main() {
         lang: lang,
         stdin: input,
       };
+      // show a simple modal that 'code is currently hosted on free onrender instance thus it needs to be cold started'
+
+      setShowModal(true);
+
       setExecuting(true);
       console.log(JSON.stringify(data));
       const response = await fetch(
@@ -134,10 +144,12 @@ func main() {
       );
       const res = await response.json();
       setExecuting(false);
+      setShowModal(false);
       console.log(res);
       setOutput(res);
     } catch (error) {
       console.log(error);
+      setShowModal(false);
       setExecuting(false);
       setOutput("Network Error or Server Down");
     }
@@ -145,6 +157,51 @@ func main() {
 
   return (
     <>
+      <Modal
+        open={showModal}
+        onClose={handleCloseModal}
+        aria-labelledby="onrender-modal-title"
+        aria-describedby="onrender-modal-description"
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            bgcolor: "background.default",
+            border: "2px solid #000",
+            boxShadow: 24,
+            p: 4,
+            maxWidth: "80%",
+            minWidth: "50%",
+          }}
+        >
+          <h2
+            id="onrender-modal-title"
+            style={{
+              color: "white",
+              textAlign: "center",
+              fontFamily: "poppins",
+              fontSize: "1.5rem",
+            }}
+          >
+            Hosted on Render
+          </h2>
+          <p
+            id="onrender-modal-description"
+            style={{
+              color: "white",
+              textAlign: "center",
+              fontFamily: "poppins",
+              fontSize: "1rem",
+            }}
+          >
+            Backend is currently hosted on a free Render instance. It may take a
+            moment to start due to cold start.
+          </p>
+        </Box>
+      </Modal>
       <Box
         backgroundColor="background.default"
         sx={{
@@ -401,7 +458,6 @@ func main() {
                 overflow: "auto",
                 whiteSpace: "pre-line",
                 fontFamily: "monospace",
-                overflow: "auto",
                 height: "90%",
                 width: "inherit",
                 fontSize: "17px",
